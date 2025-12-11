@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- tailwindcss cdn -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="main w-full min-h-screen bg-zinc-900">
+        <div class="form p-10 text-white">
+            <form action="/create-task" method="POST" >
+               
+                <input type="text" name="title"  class="block bg-zinc-700 px-5 py-2 w-full rounded-lg mt-2  " placeholder="Enter your name">
+                <textarea name="discription"  class="block bg-zinc-700 px-5 py-2 w-full rounded-lg mt-2 resize-none " placeholder="Write your task here..."></textarea>
+                <button type="submit" class="block bg-blue-500 px-5 py-2 w-full rounded-lg mt-2 ">Create Task</button>
+            </form>
+        </div>
+        <div class="tasks p-10 flex gap-4 text-white">
+            <% if (tasks.length > 0) { %>
+                
+                 <% tasks.forEach(function(task) { %>
+                   <div class=" task w-72 px-3 py-4 rounded-md bg-zinc-700 text-white">
+                   <h3 class="text-3xl tracking-tighter  "><%= task.replace(/_/g, ' ').replace('.txt', '') %></h3>
+                     <div class="flex justify-between ">
+                        <a href="/tasks/<%= task %>" class="text-blue-400">Read more</a>
+                        <a href="/edit/<%= task %>" class="text-zinc-400">Edit File</a>
+                     </div>
+
+                    </div>
+
+                <% }); %>
+            <% } else { %>
+                <p>No tasks available.</p>
+            <% } %>
+        </div>
+    </div>
+</body>
+</html>
